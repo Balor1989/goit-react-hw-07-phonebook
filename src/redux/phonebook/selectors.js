@@ -3,6 +3,9 @@ import {
   fetchContactsError,
   fetchContactsRequest,
   fetchContactsSuccess,
+  deleteContactsRequest,
+  deleteContactsError,
+  deleteContactsSuccess,
 } from './actions';
 
 axios.defaults.baseURL = 'https://620a3f5092946600171c58f2.mockapi.io/v1_0';
@@ -26,5 +29,15 @@ export const fetchContacts = () => async dispatch => {
     dispatch(fetchContactsSuccess(response.data));
   } catch (error) {
     dispatch(fetchContactsError(error));
+  }
+};
+
+export const deleteContacts = contactId => async dispatch => {
+  dispatch(deleteContactsRequest());
+  try {
+    await axios.delete(`/contacts/${contactId}`);
+    dispatch(deleteContactsSuccess(contactId));
+  } catch (error) {
+    dispatch(deleteContactsError(error));
   }
 };
