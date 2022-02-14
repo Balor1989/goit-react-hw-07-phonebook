@@ -11,7 +11,7 @@ export default function Contacts() {
   const contacts = useSelector(getVisibleContacts);
   const dispatch = useDispatch();
   const onDeleteContactCard = id => {
-    dispatch(deleteContacts.fulfilled(id));
+    dispatch(deleteContacts(id));
   };
   useEffect(() => {
     dispatch(fetchContacts());
