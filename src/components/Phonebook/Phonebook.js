@@ -34,7 +34,7 @@ export default function Phonebook() {
     });
     if (!repeatName) {
       Notify.success(`${name} is added in contacts`);
-      dispatch(addContacts(name, phone));
+      dispatch(addContacts({ name, phone }));
       setPhone('');
       setName('');
       return;
