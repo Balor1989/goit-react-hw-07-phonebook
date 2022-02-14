@@ -1,24 +1,10 @@
 import { configureStore } from '@reduxjs/toolkit';
 import contactsReducer from './phonebook/reducers';
-import {
-  FLUSH,
-  REHYDRATE,
-  PAUSE,
-  PERSIST,
-  PURGE,
-  REGISTER,
-} from 'redux-persist';
-// import storage from 'redux-persist/lib/storage';
+import { FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER } from 'redux-persist';
 import logger from 'redux-logger';
 
-// const persistConfig = {
-//   key: 'contacts',
-//   storage,
-//   blacklist: ['filter'],
-// };
-
 const store = configureStore({
-  reducer: { contacts: contactsReducer },
+  reducer: { phonebook: contactsReducer },
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware({
       serializableCheck: {
@@ -27,7 +13,5 @@ const store = configureStore({
     }).concat(logger),
   devTools: process.env.NODE_ENV === 'development',
 });
-
-// const persistor = persistStore(store);
 
 export default store;
