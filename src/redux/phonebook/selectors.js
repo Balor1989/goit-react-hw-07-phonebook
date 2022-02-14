@@ -1,8 +1,6 @@
+import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 import {
-  fetchContactsError,
-  fetchContactsRequest,
-  fetchContactsSuccess,
   deleteContactsRequest,
   deleteContactsError,
   deleteContactsSuccess,
@@ -24,16 +22,10 @@ export const getVisibleContacts = state => {
   return contacts.filter(({ name }) => name.toLowerCase().includes(normalizedFilter));
 };
 
-export const fetchContacts = () => async dispatch => {
-  dispatch(fetchContactsRequest());
-
-  try {
-    const { data } = await axios.get('/contacts');
-    dispatch(fetchContactsSuccess(data));
-  } catch (error) {
-    dispatch(fetchContactsError(error));
-  }
-};
+export const fetchContacts = createAsyncThunk('phonebook/fetchContacts', async () => {
+  const { data } = await axios.get('/contacts');
+  return data;
+});
 
 export const deleteContacts = contactId => async dispatch => {
   dispatch(deleteContactsRequest());
