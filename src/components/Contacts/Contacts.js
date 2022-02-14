@@ -1,11 +1,11 @@
 import { useDispatch, useSelector } from 'react-redux';
 import s from './Contacts.module.css';
-import { fetchContacts } from '../../redux/phonebook/selectors';
+import { fetchContacts, getVisibleContacts } from '../../redux/phonebook/selectors';
 import { deleteContactAction } from '../../redux/phonebook/actions';
 import { useEffect } from 'react';
 
 export default function Contacts() {
-  const contacts = useSelector(state => state.phonebook.contacts);
+  const contacts = useSelector(getVisibleContacts);
   const dispatch = useDispatch();
   const onDeleteContactCard = id => {
     dispatch(deleteContactAction(id));

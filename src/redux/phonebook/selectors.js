@@ -7,7 +7,7 @@ import {
 
 axios.defaults.baseURL = 'https://620a3f5092946600171c58f2.mockapi.io/v1_0';
 
-export const getContacts = state => state.phonebook.items;
+export const getContacts = state => state.phonebook.contacts;
 export const getFilter = state => state.phonebook.filter;
 
 export const getVisibleContacts = state => {
