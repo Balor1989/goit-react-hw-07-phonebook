@@ -73,7 +73,7 @@ export default function Phonebook() {
           />
         </div>
         <div className={s.inputBox}>
-          <label className={s.label}>Number</label>
+          <label className={s.label}>Phone</label>
           <input
             className={s.input}
             value={number}
