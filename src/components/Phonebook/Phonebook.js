@@ -3,13 +3,12 @@ import { IconContext } from 'react-icons';
 import s from './Phonebook.module.css';
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getContacts } from '../../redux/phonebook/selectors';
+import { addContacts, getContacts } from '../../redux/phonebook/selectors';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
-import { addContactAction } from '../../redux/phonebook/actions';
 
 export default function Phonebook() {
   const [name, setName] = useState('');
-  const [number, setNumber] = useState('');
+  const [phone, setPhone] = useState('');
   const contacts = useSelector(getContacts);
   const dispatch = useDispatch();
 
@@ -21,7 +20,7 @@ export default function Phonebook() {
         setName(value);
         break;
       case 'number':
-        setNumber(value);
+        setPhone(value);
         break;
       default:
         return;
@@ -35,8 +34,8 @@ export default function Phonebook() {
     });
     if (!repeatName) {
       Notify.success(`${name} is added in contacts`);
-      dispatch(addContactAction(name, number));
-      setNumber('');
+      dispatch(addContacts(name, phone));
+      setPhone('');
       setName('');
       return;
     }
@@ -76,7 +75,7 @@ export default function Phonebook() {
           <label className={s.label}>Phone</label>
           <input
             className={s.input}
-            value={number}
+            value={phone}
             onChange={handleChange}
             type="tel"
             name="number"
